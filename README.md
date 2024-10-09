@@ -1,8 +1,12 @@
-# trustification-ansible
+# Red Hat Trusted Profile Analyzer Ansible collection
 
-Automation to deploy the Trustification project on RH OS family
+The purpose of this Ansible collection is to automate the deployment of the Red Hat Trusted Profile Analyzer (RHTPA) service on Red Hat Enterprise Linux (RHEL).
 
-:warning: **The contents of this repository are a Work in Progress.**
+> [!IMPORTANT]
+Deploying RHTPA by using Ansible is a Technology Preview feature only.
+Technology Preview features are not supported with Red Hat production service level agreements (SLAs), might not be functionally complete, and Red Hat does not recommend to use them for production.
+These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+See the support scope for [Red Hat Technology Preview](https://access.redhat.com/support/offerings/techpreview/) features for more details.
 
 ## Overview
 
@@ -19,7 +23,7 @@ The following components are used if provided by the customers:
 - RH Single Sign On
 - RH Kafka streams
 - Postgresql
-- S3 or compatible service like Minio
+- S3 or S3 compatible service like Minio
 
 Utilize the steps below to understand how to setup and execute the provisioning.
 
