@@ -20,6 +20,12 @@ The RHTPA Ansible collection deploys the following RHTAS components:
 - [Trustification](https://github.com/trustification/trustification)
 - [Guac](https://github.com/trustification/guac)
 
+An [NGINX](https://www.nginx.com) front end places an entrypoint to the RHTPA UI.
+A set of self-signed certificates get generated at runtime to establishing secure communications.
+
+The ingress host name is follow, where `<base_hostname>` is your deployment's base hostname:
+* https://`<base_hostname>`
+
 ## Overview
 
 The automation within this repository establishes the components of Trustification, the downstream redistribution of [Trustification project](https://github.com/trustification/trustification) within a single Red Hat Enterprise Linux (RHEL) or Fedora machine using a standalone containerized deployment. Containers are spawned using Kubernetes based manifests using
