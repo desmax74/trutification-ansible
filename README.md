@@ -26,16 +26,23 @@ A set of self-signed certificates get generated at runtime to establishing secur
 The ingress host name is follow, where `<base_hostname>` is your deployment's base hostname:
 * https://`<base_hostname>`
 
+## Requirements
+
+* Ansible 2.16.0 or greater
+* Python 3.9.0 or greater
+* RHEL x86\_64 9.2 or greater.
+* Installation and configuration of Ansible on a control node to perform the automation.
+* Installation of the Ansible collections on the control node.
+  * If installing from the Ansible Automation Hub, then run `ansible-galaxy install redhat.trusted_profile_analyzer`.
+  * If installing from this Git repository, then clone it locally, and run `ansible-galaxy collection install -r requirements.yml`.
+* An OpenID Connect (OIDC) provider, such as [Keycloak](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/sso/).
+* A PostgreSQL instance
+* SQS like [Kafka](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/amq_streams/) 
+* S3 service or S3 compatible service
+* Optional:
+  Installation of the `podman` binaries to verify that the RHTPA service is working as expected.
+
 ## Overview
-
-The automation within this repository establishes the components of Trustification, the downstream redistribution of [Trustification project](https://github.com/trustification/trustification) within a single Red Hat Enterprise Linux (RHEL) or Fedora machine using a standalone containerized deployment. Containers are spawned using Kubernetes based manifests using
-[podman kube play](https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html).
-
-The following Trustification components are deployed as part of this architecture:
-
-- [Trustification](https://github.com/trustification/trustification)
-- [Guac](https://github.com/trustification/guac)
-
 The following components are used if provided by the customers:
 
 - RH Single Sign On
@@ -44,6 +51,36 @@ The following components are used if provided by the customers:
 - S3 or S3 compatible service like Minio
 
 Utilize the steps below to understand how to setup and execute the provisioning.
+
+## Installation
+
+
+Before using this collection, you need to install it with the Ansible Galaxy command-line tool:
+
+```
+ansible-galaxy collection install redhat.trusted_profile_analyzer
+```
+
+You can also include it in a `requirements.yml` file and install it with `ansible-galaxy collection install -r requirements.yml`, using the format:
+
+
+```yaml
+collections:
+  - name: redhat.trusted_profile_analyzer
+```
+
+Note that if you install any collections from Ansible Galaxy, they will not be upgraded automatically when you upgrade the Ansible package.
+To upgrade the collection to the latest available version, run the following command:
+
+```
+ansible-galaxy collection install redhat.trusted_profile_analyzer --upgrade
+```
+
+You can also install a specific version of the collection, for example, if you need to downgrade when something is broken in the latest version (please report an issue in this repository). Use the following syntax to install version 1.2.0:
+
+```
+ansible-galaxy collection install redhat.trusted_profile_analyzer:==1.2.0
+```
 
 ## Prerequisites
 
