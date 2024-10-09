@@ -82,6 +82,49 @@ You can also install a specific version of the collection, for example, if you n
 ansible-galaxy collection install redhat.trusted_profile_analyzer:==1.2.0
 ```
 
+## Verifying the deployment 
+
+1. Export the following environment variables, replacing `TODO` with your relevant information:
+
+   ```shell
+      export TPA_SINGLE_NODE_REGISTRATION_USERNAME=<Your Red Hat subscription username>
+      export TPA_SINGLE_NODE_REGISTRATION_PASSWORD=<Your Red Hat subscription password>
+      export TPA_SINGLE_NODE_REGISTRY_USERNAME=<Your Red Hat image registry username>
+      export TPA_SINGLE_NODE_REGISTRY_PASSWORD=<Your Red Hat image registry password>
+      export TPA_PG_HOST=<POSTGRES_HOST_IP>
+      export TPA_PG_USER=<DB_USER>
+      export TPA_PG_PASSWORD==<DB_PASSWORD>
+      export TPA_STORAGE_ACCESS_KEY=<Storage Access Key>
+      export TPA_STORAGE_SECRET_KEY=<Storage Secret Key>
+      export TPA_OIDC_ISSUER_URL=<AWS Cognito or Keycloak Issuer URL. Incase of Keycloak endpoint auth/realms/chicken is needed>
+      export TPA_OIDC_FRONTEND_ID=<OIDC Frontend Id>
+      export TPA_OIDC_PROVIDER_CLIENT_ID=<OIDC Walker Id>
+      export TPA_OIDC_PROVIDER_CLIENT_SECRET=<OIDC Walker Secret>
+      export TPA_EVENT_ACCESS_KEY_ID=<Kafka Username or AWS SQS Access Key>
+      export TPA_EVENT_SECRET_ACCESS_KEY=<Kafka User Password or AWS SQS Secret Key>
+   ```
+2. In case of Kafka Events, create environmental variable for bootstrap server
+```shell
+export TPA_EVENT_BOOTSTRAP_SERVER=<Kafka Bootstrap Server>
+```
+
+3. In case of AWS Cognito as OIDC, create environmental variable for Cognito Domain
+```shell
+export TPA_OIDC_COGNITO_DOMAIN=<AWS Cognito Domain>
+```
+
+4. Open the browser to call the UI
+https://`<base_hostname>`
+
+
+
+
+
+
+
+
+
+
 ## Prerequisites
 
 A RHEL 9.3+ server should be used to run the Trustification components.
