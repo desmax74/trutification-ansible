@@ -8,6 +8,18 @@ Technology Preview features are not supported with Red Hat production service le
 These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 See the support scope for [Red Hat Technology Preview](https://access.redhat.com/support/offerings/techpreview/) features for more details.
 
+
+## Description
+
+The RHTPA service is the downstream redistribution of the [Trustification](https://github.com/trustification/trustification) project.
+The automation contained within this Git repository installs and configures the components of RHTPA to run on a single RHEL server, which uses a standalone containerized deployment.
+A Kubernetes-based manifest creates containers that uses [`podman kube play`](https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html).
+
+The RHTPA Ansible collection deploys the following RHTAS components:
+
+- [Trustification](https://github.com/trustification/trustification)
+- [Guac](https://github.com/trustification/guac)
+
 ## Overview
 
 The automation within this repository establishes the components of Trustification, the downstream redistribution of [Trustification project](https://github.com/trustification/trustification) within a single Red Hat Enterprise Linux (RHEL) or Fedora machine using a standalone containerized deployment. Containers are spawned using Kubernetes based manifests using
