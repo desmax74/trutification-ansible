@@ -37,18 +37,20 @@ The ingress host name is follow, where `<base_hostname>` is your deployment's ba
   * If installing from this Git repository, then clone it locally, and run `ansible-galaxy collection install -r requirements.yml`.
 * An OpenID Connect (OIDC) provider, such as [Keycloak](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/sso/).
 * A PostgreSQL instance
-* SQS like [Kafka](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/amq_streams/) 
+* SQS like [Kafka](https://console.redhat.com/ansible/automation-hub/repo/published/redhat/amq_streams/)
 * S3 service or S3 compatible service
 * Optional:
   Installation of the `podman` binaries to verify that the RHTPA service is working as expected.
 
 ## Overview
-The following components are used if provided by the customers:
+The following components are provided by the customers:
 
 - RH Single Sign On
 - RH Kafka streams
 - Postgresql
 - S3 or S3 compatible service like Minio
+
+Details about how to configure the services can be found here [RHTPA external services deploy](https://docs.redhat.com/en/documentation/red_hat_trusted_profile_analyzer/1/html-single/deployment_guide/index#installing-trusted-profile-analyzer-by-using-helm-with-other-services_deploy)
 
 Utilize the steps below to understand how to setup and execute the provisioning.
 
@@ -82,7 +84,7 @@ You can also install a specific version of the collection, for example, if you n
 ansible-galaxy collection install redhat.trusted_profile_analyzer:==1.2.0
 ```
 
-## Verifying the deployment 
+## Verifying the deployment
 
 1. Export the following environment variables, replacing `TODO` with your relevant information:
 
@@ -114,7 +116,7 @@ export TPA_OIDC_COGNITO_DOMAIN=<AWS Cognito Domain>
 ```
 
 4. Open the browser to call the UI
-https://`<base_hostname>`
+   https://`<base_hostname>`
 
 
 
@@ -205,7 +207,7 @@ Optionally, the certs directory variable `tpa_single_node_certificates_dir` unde
 - tpa_single_node_nginx_tls_crt_path
 - tpa_single_node_nginx_tls_key_path
 
-5. Create Environment Variables for Storage, Events and OIDC 
+5. Create Environment Variables for Storage, Events and OIDC
 
 ```
 export TPA_PG_HOST=<POSTGRES_HOST_IP>
