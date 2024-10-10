@@ -45,12 +45,75 @@ The ingress host name is follow, where `<base_hostname>` is your deployment's ba
 ## Overview
 The following components are provided by the customers:
 
-- RH Single Sign On
-- RH Kafka streams
-- Postgresql
-- S3 or S3 compatible service like Minio
+### RH Single Sign On
+  For this, you will need to:
 
-Details about how to configure the services can be found here [RHTPA external services deploy](https://docs.redhat.com/en/documentation/red_hat_trusted_profile_analyzer/1/html-single/deployment_guide/index#installing-trusted-profile-analyzer-by-using-helm-with-other-services_deploy)
+  * Install Keycloak
+  * Create a new realm
+  * Create the following roles for this realm
+   * `chicken-user`
+   * `chicken-manager`
+   * `chicken-admin`
+  * Make the `chicken-user` a default role
+  * Create the following scopes for this realm
+    * `read:document`
+    * `create:document`
+    * `delete:document`
+  * Add the `create:document` and `delete:document` scope to the `chicken-manager` role
+  * Create two clients
+    *  One public client
+        * Set `standardFlowEnabled` to `true`
+        * Set `fullScopedAllowed` to `true`
+        * Set the following `defaultClientScopes`
+          * `read:document`
+          * `create:document`
+          * `delete:document`
+    * One protected client  
+        * Set `publicClient` to `false`
+        * Set `serviecAccountsEnabled` to `true`
+        * Set `fullScopedAllowed` to `true`
+        * Set the following `defaultClientScopes`
+          * `read:document`
+          * `create:document`
+        * Add role `chicken-manager` to the service account of this client
+    * Increase the token timeout for both clients to at least 5 minutes
+    * Create a user, acting as administrator
+    * Add the `chicken-manager` and `chicken-admin` role to this user
+
+
+
+### RH Kafka streams  
+  With the following topic names created:
+```
+  bombastic-failed-default
+  bombastic-indexed-default
+  bombastic-stored-default
+  vexination-failed-default
+  vexination-indexed-default
+  vexination-stored-default
+  v11y-failed-default
+  v11y-indexed-default
+  v11y-stored-default
+```
+configured in the main.yml
+
+### Postgresql
+
+### S3 or S3 compatible service like Minio
+  Have the following unversioned S3 bucket names created:
+  ```
+  bombastic-default
+  vexination-default
+  v11y-default 
+  ```
+  configured in the main.yml
+
+
+*  Details about how to configure the services can be found here [RHTPA external services deploy](https://docs.redhat.com/en/documentation/red_hat_trusted_profile_analyzer/1/html-single/deployment_guide/index#installing-trusted-profile-analyzer-by-using-helm-with-other-services_deploy)
+* [Trustification](https://github.com/trustification/trustification/blob/main/docs/modules/admin/pages/cluster-preparing.adoc)
+
+
+
 
 Utilize the steps below to understand how to setup and execute the provisioning.
 
